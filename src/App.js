@@ -53,6 +53,7 @@ import dai from './dai.jpg';
 import xdai from './xdai.jpg';
 import Wyre from './services/wyre';
 
+
 let base64url = require('base64url')
 const EthCrypto = require('eth-crypto');
 
@@ -70,6 +71,8 @@ let ERC20NAME
 let LOADERIMAGE = burnerlogo
 let HARDCODEVIEW = "yourmodule"// = "loader"// = "receipt"
 let FAILCOUNT = 0
+
+let gnosis
 
 let mainStyle = {
   width:"100%",
@@ -89,7 +92,7 @@ let titleImage = (
 //<i className="fas fa-fire" />
 if (window.location.hostname.indexOf("localhost") >= 0 || window.location.hostname.indexOf("10.0.0.107") >= 0) {
   //XDAI_PROVIDER = "http://localhost:8545"
-  WEB3_PROVIDER = "http://localhost:8545";
+  WEB3_PROVIDER = "https://dai.poa.network";
   CLAIM_RELAY = 'http://localhost:18462'
   if(true){
     ERC20NAME = false
@@ -537,7 +540,7 @@ class App extends Component {
   longPoll() {
     axios.get("https://api.coinmarketcap.com/v2/ticker/1027/")
      .then((response)=>{
-       let ethprice = response.data.data.quotes.USD.price
+       let ethprice = 100
        this.setState({ethprice})
      })
   }
