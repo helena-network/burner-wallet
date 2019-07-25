@@ -1,0 +1,23 @@
+body {
+  margin: 0px;
+}
+
+.container {
+  position: relative;
+  min-height: 200px;
+  height: auto;
+  width: 600px;
+}
+
+.main > div {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 600px;
+  height: auto;
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  color: black;
+  will-change: transform, opacity;
+}
