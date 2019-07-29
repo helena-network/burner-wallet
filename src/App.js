@@ -266,7 +266,7 @@ class App extends Component {
       hasUpdateOnce: false,
       badges: {},
       selectedBadge: false,
-      allOneMarkets: []
+      allOneMarkets: false
     };
     this.alertTimeout = null;
 
@@ -435,25 +435,6 @@ class App extends Component {
     setTimeout(this.longPoll.bind(this),150)
 
     this.connectToRPC()
-
-    const oneMarket = new HelenaOneMarket({ web3: this.state.web3 });
-
-    await oneMarket.init();
-
-    const allMarkets = await oneMarket.getMarkets();
-    // const allOneMarkets = allMarkets.map((market) => (
-    //   <div style={{ position: 'relative' }}>
-    //     {oneMarket.market({
-    //       marketId: market.address
-    //     })}
-    //   </div>
-    // ));
-
-    const market = oneMarket.market({
-      marketId: allMarkets[2].address
-    })
-    console.log('did mount')
-    this.setState({ allOneMarkets: market });
   }
   connectToRPC(){
     const { Contract } = core.getWeb3(MAINNET_CHAIN_ID).eth;
@@ -1719,7 +1700,27 @@ render() {
                 url = url+":"+window.location.port
               }
 
-              const helenaOneMarkets = this.state.allOneMarkets;
+              // HELENA CONFIG
+              if (!this.state.allOneMarkets) {
+                const oneMarket = new HelenaOneMarket({ web3: this.state.web3 });
+
+                oneMarket.init()
+                  .then(() => {
+                    return oneMarket.getMarkets();
+                  })
+                  .then((markets) => {
+                    const allOneMarkets = markets.map((market) => (
+                      <div style={{ position: 'relative' }}>
+                        {oneMarket.market({
+                          marketId: market.address
+                        })}
+                      </div>
+                    ));
+                    this.setState({ allOneMarkets });
+                  })
+              }
+              //
+
               return (
                 <div>
                   <div className="main-card card w-100" style={{zIndex:1}}>
@@ -1736,7 +1737,7 @@ render() {
                       changeAlert={this.changeAlert}
                       goBack={this.goBack.bind(this)}
                     /> */}
-                    {helenaOneMarkets}
+                    {this.state.allOneMarkets}
                     
                   </div>
                   <Bottom

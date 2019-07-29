@@ -17,7 +17,6 @@ export default class GraphContainer extends React.Component {
     const { market } = this.props;
     pmService.getMarketTrades(market.address).then((trades) => {
       const marketGraph = getMarketGraph(market, trades);
-      console.log(marketGraph);
       this.setState({ marketGraph });
     });
   }
