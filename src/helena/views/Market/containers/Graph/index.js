@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { pmService } from '../../../../services';
-import Graph from '../index';
+import Graph from '../../components/Graph';
 import getMarketGraph from './utils/getGraph';
 
 export default class GraphContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       marketGraph: []

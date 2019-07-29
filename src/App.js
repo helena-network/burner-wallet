@@ -44,6 +44,7 @@ import namehash from 'eth-ens-namehash'
 import incogDetect from './services/incogDetect.js'
 import core, { mainAsset as xdai } from './core';
 
+import HelenaOneMarket from './helena';
 //https://github.com/lesnitsky/react-native-webview-messaging/blob/v1/examples/react-native/web/index.js
 import RNMessageChannel from 'react-native-webview-messaging';
 
@@ -265,6 +266,7 @@ class App extends Component {
       hasUpdateOnce: false,
       badges: {},
       selectedBadge: false,
+      allOneMarkets: []
     };
     this.alertTimeout = null;
 
@@ -362,7 +364,9 @@ class App extends Component {
       }
     })
   }
-  componentDidMount(){
+  async componentDidMount(){
+
+    
 
     document.body.style.backgroundColor = mainStyle.backgroundColor
 
@@ -431,6 +435,25 @@ class App extends Component {
     setTimeout(this.longPoll.bind(this),150)
 
     this.connectToRPC()
+
+    const oneMarket = new HelenaOneMarket({ web3: this.state.web3 });
+
+    await oneMarket.init();
+
+    const allMarkets = await oneMarket.getMarkets();
+    // const allOneMarkets = allMarkets.map((market) => (
+    //   <div style={{ position: 'relative' }}>
+    //     {oneMarket.market({
+    //       marketId: market.address
+    //     })}
+    //   </div>
+    // ));
+
+    const market = oneMarket.market({
+      marketId: allMarkets[2].address
+    })
+    console.log('did mount')
+    this.setState({ allOneMarkets: market });
   }
   connectToRPC(){
     const { Contract } = core.getWeb3(MAINNET_CHAIN_ID).eth;
@@ -1696,12 +1719,13 @@ render() {
                 url = url+":"+window.location.port
               }
 
+              const helenaOneMarkets = this.state.allOneMarkets;
               return (
                 <div>
                   <div className="main-card card w-100" style={{zIndex:1}}>
 
                     <NavCard title={url} goBack={this.goBack.bind(this)} />
-                    <Share
+                    {/* <Share
                       title={url}
                       url={url}
                       mainStyle={mainStyle}
@@ -1711,7 +1735,9 @@ render() {
                       address={account}
                       changeAlert={this.changeAlert}
                       goBack={this.goBack.bind(this)}
-                    />
+                    /> */}
+                    {helenaOneMarkets}
+                    
                   </div>
                   <Bottom
                     action={this.goBack.bind(this)}
