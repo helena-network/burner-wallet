@@ -364,10 +364,8 @@ class App extends Component {
       }
     })
   }
-  async componentDidMount(){
-
+  componentDidMount(){
     
-
     document.body.style.backgroundColor = mainStyle.backgroundColor
 
     Wyre.configure();
