@@ -71,7 +71,7 @@ export default class Bet extends React.Component {
                 />
               )}
               {value === 1 && <MyShares />}
-              {value === 2 && <MyTrades trades={trades} market={market} />}
+              {/* {value === 2 && <MyTrades trades={trades} market={market} />} */}
             </div>
           </div>
         </div>
@@ -93,10 +93,10 @@ export default class Bet extends React.Component {
             classes={{ root: cx('tab-root'), selected: cx('tab-selected') }}
             icon={<CompareArrows className={cx('icon')} />}
           />
-          <Tab
+          {/* <Tab
             classes={{ root: cx('tab-root'), selected: cx('tab-selected') }}
             icon={<History className={cx('icon')} />}
-          />
+          /> */}
         </Tabs>
       </div>
     );

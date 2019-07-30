@@ -1708,7 +1708,7 @@ render() {
                   })
                   .then((markets) => {
                     const allOneMarkets = markets.map((market) => (
-                      <div style={{ position: 'relative' }}>
+                      <div style={{ position: 'relative', marginTop: 10 }}>
                         {oneMarket.market({
                           marketId: market.address
                         })}

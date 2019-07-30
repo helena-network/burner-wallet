@@ -42,21 +42,17 @@ export default class Market extends React.Component {
       : {};
 
     return (
-      <div style={{ display: 'flex', width: '100%' }}>
-        <div style={{ position: 'relative' }}>
-          <Button size="small" className={cx('nav-button')} onClick={onDetail}>
-            <ArrowLeft />
-            <BarChart className={cx('nav-icon')} />
-          </Button>
-        </div>
-
+      <div className={cx('overview-container')}>
         <div className={cx('center')}>
-          {balance && (
+          {/* {balance && (
             <div className={cx('header')}>{`${parseTokenValue(
               balance
             )} xP+`}</div>
-          )}
-          <div className={cx('header')}>{market.title}</div>
+          )} */}
+          <div className={cx('title-header')}>
+            <div className={cx('title')}>{market.title}</div>
+            <div className={cx('subtitle')}>{market.description}</div>
+          </div>
           <div className={cx('body')}>
             {market.isScalar ? (
               <OutcomeScalar {...market} {...bounds} />
@@ -64,23 +60,38 @@ export default class Market extends React.Component {
               <OutcomeCategorical {...market} />
             )}
           </div>
-          <div
+          <div className={cx('details')}>
+            <div className={cx('resolution-date')}>
+              Closing at {resolutionDate}
+            </div>
+            <div className={cx('volume')}>
+              Volume: {tradingVolume} xP+
+            </div>
+            
+          </div>
+          {/* <div
             className={cx('body')}
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <span>{marketStatus}</span>
             <span>{resolutionDate}</span>
             <span>{tradingVolume} xP+</span>
-          </div>
+          </div> */}
         </div>
-        {!market.closed && !market.resolved && (
-          <div style={{ position: 'relative' }}>
-            <Button size="small" className={cx('nav-button')} onClick={onBet}>
-              <Toll className={cx('nav-icon')} />
+
+        <div className={cx('market-nav')}>
+          <Button variant="outlined" size="small" className={cx('nav-button', 'pull-left')} onClick={onDetail}>
+            <ArrowLeft />
+            Market History
+          </Button>
+          {!market.closed && !market.resolved && (
+            <Button variant="contained" size="small" className={cx('nav-button', 'pull-right', 'bet-button')} onClick={onBet}>
+              Bet
               <ArrowRight />
             </Button>
-          </div>
-        )}
+          )}
+        </div>
+        
       </div>
     );
   }

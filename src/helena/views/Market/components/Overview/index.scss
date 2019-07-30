@@ -1,20 +1,63 @@
-.nav-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  min-width: 20px !important;
-}
-
 .nav-icon {
   height: 5px;
 }
 
-.header {
-  padding: 6px;
+.title-header {
   color: black;
+
+  .title {
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+    margin-top: 2px;
+    color: #484b4e;
+  }
 }
 
-.body {
+.market-nav {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+
+  .nav-button {
+    font-size: 15px;
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+
+  .bet-button {
+    color: white;
+    background-color: #CCB185;
+    box-shadow: none;
+  }
+
+  .pull-right {
+    margin-left: auto;
+  }
+
+  .pull-left {
+    margin-right: auto;
+  }
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  font-size: 12px;
+
+  .resolution-date {
+    margin-right: auto;
+  }
+
+  .volume {
+    margin-left: auto;
+  }
+}
+
+.overview-container {
   padding: 6px
 }
 
