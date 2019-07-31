@@ -1712,6 +1712,7 @@ render() {
                         {oneMarket.market({
                           marketId: market.address
                         })}
+                        <Ruler />
                       </div>
                     ));
                     this.setState({ allOneMarkets });
@@ -1721,7 +1722,7 @@ render() {
 
               return (
                 <div>
-                  <div className="main-card card w-100" style={{zIndex:1}}>
+                  <div className="main-card card w-100" style={{zIndex:1, backgroundColor: '#f6f6f6'}}>
 
                     <NavCard title={url} goBack={this.goBack.bind(this)} />
                     {/* <Share

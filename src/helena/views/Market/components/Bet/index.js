@@ -46,18 +46,25 @@ export default class Bet extends React.Component {
 
     const formattedBalance = parseTokenValue(balance);
     return (
-      <div style={{ display: 'flex' }}>
-        <div style={{ position: 'relative' }}>
-          <Button onClick={onOverview} className={cx('back-button')}>
-            <ArrowLeft />
-          </Button>
-        </div>
+      <div>
         <div style={{ width: '100%' }}>
-          <div className={cx('header')}>My balance: {formattedBalance} xP+</div>
-          <div className={cx('market-title')}>{market.title}</div>
+          <div className={cx('title-header')}>
+            <div className={cx('title')}>{market.title}</div>
+          </div>
           <div style={{ display: 'flex' }}>
             <div className={cx('tab-content')}>
-              {value === 0 && (
+              <BuyTokens
+                amount={amount}
+                onChangeAmount={onChangeAmount}
+                errorAmount={errorAmount}
+                onChangeOutcome={onChangeOutcome}
+                selectedOutcome={selectedOutcome}
+                market={market}
+                outcomeTokensSold={outcomeTokensSold}
+                handleBuyTokens={handleBuyTokens}
+                canBet={canBet}
+              />
+              {/* {value === 0 && (
                 <BuyTokens
                   amount={amount}
                   onChangeAmount={onChangeAmount}
@@ -69,13 +76,19 @@ export default class Bet extends React.Component {
                   handleBuyTokens={handleBuyTokens}
                   canBet={canBet}
                 />
-              )}
-              {value === 1 && <MyShares />}
+              )} */}
+              {/* {value === 1 && <MyShares />} */}
               {/* {value === 2 && <MyTrades trades={trades} market={market} />} */}
             </div>
           </div>
         </div>
-        <Tabs
+        <div className={cx('market-nav')}>
+          <Button variant="outlined" size="small" className={cx('nav-button', 'pull-left')} onClick={onOverview}>
+            <ArrowLeft />
+            Back to Market
+          </Button>
+        </div>
+        {/* <Tabs
           value={this.state.value}
           onChange={this.handleChange}
           variant="fullWidth"
@@ -96,8 +109,8 @@ export default class Bet extends React.Component {
           {/* <Tab
             classes={{ root: cx('tab-root'), selected: cx('tab-selected') }}
             icon={<History className={cx('icon')} />}
-          /> */}
-        </Tabs>
+          />
+        </Tabs> */}
       </div>
     );
   }

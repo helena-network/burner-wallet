@@ -34,7 +34,7 @@ $expandable-arrow-size: 7px;
 
 .currentPredictionValue {
   position: absolute;
-  background-color: blue;
+  background-color: #CCB185;
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -52,7 +52,7 @@ $expandable-arrow-size: 7px;
     height: 0;
     border-left: $expandable-arrow-size solid transparent;
     border-right: $expandable-arrow-size solid transparent;
-    border-top: $expandable-arrow-size solid blue;
+    border-top: $expandable-arrow-size solid #CCB185;
   }
 }
 

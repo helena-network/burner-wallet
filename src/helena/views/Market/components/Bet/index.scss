@@ -5,6 +5,36 @@ $brand-primary: #CCB185;
   // padding: 6px;
 }
 
+.title-header {
+  color: black;
+
+  .title {
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+    margin-top: 2px;
+    color: #484b4e;
+  }
+}
+
+.market-nav {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+
+  .nav-button {
+    font-size: 15px;
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+  .pull-left {
+    margin-right: auto;
+  }
+}
+
 .market-title {
   padding: 6px;
 }

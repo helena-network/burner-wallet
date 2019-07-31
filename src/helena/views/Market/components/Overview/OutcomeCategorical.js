@@ -3,6 +3,7 @@ import cn from 'classnames/bind';
 import Radio from '@material-ui/core/Radio';
 import { calcLMSRMarginalPrice } from '../../../../utils/pm';
 import style from './outcomeCategorical.scss';
+import { COLOR_SCHEME_DEFAULT } from '../../../../utils/constants';
 
 const cx = cn.bind(style);
 
@@ -31,8 +32,8 @@ const OutcomeCategorical = ({
     <div>
       {outcomes.map((outcome, outcomeIndex) => {
         const outcomeBarStyle = {
-          width: `${tokenDistribution[outcomeIndex] * 100}%`
-          // backgroundColor: COLOR_SCHEME_DEFAULT[outcomeIndex]
+          width: `${tokenDistribution[outcomeIndex] * 100}%`,
+          backgroundColor: COLOR_SCHEME_DEFAULT[outcomeIndex]
         };
         const tokenDistributionPercent = `${Math.round(
           tokenDistribution[outcomeIndex] * 100
